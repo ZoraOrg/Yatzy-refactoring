@@ -25,12 +25,12 @@ public class Yatzy1Test {
         assertEquals(16, yatzy1.calculateScoreOfChanceCategory(3, 3, 4, 5, 1));
     }
 
-    @Test public void yatzy_scores_50() {
-        int expected = 50;
-        int actual = Yatzy1.yatzy(4,4,4,4,4);
-        assertEquals(expected, actual);
-        assertEquals(50, Yatzy1.yatzy(6,6,6,6,6));
-        assertEquals(0, Yatzy1.yatzy(6,6,6,6,3));
+    @Test
+    @DisplayName("check if the player scores 50 points when all dice have the same number")
+    public void testYatzyCategory() {
+        assertEquals(50, yatzy1.calculateScoreOfYatzyCategory(4, 4, 4, 4, 4));
+        assertEquals(50, yatzy1.calculateScoreOfYatzyCategory(6, 6, 6, 6, 6));
+        assertEquals(0, yatzy1.calculateScoreOfYatzyCategory(6, 6, 6, 6, 3));
     }
 
     @Test public void test_1s() {
