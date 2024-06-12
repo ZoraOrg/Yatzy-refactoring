@@ -1,5 +1,8 @@
 package org.codingdojo.yatzy1;
 
+/**
+ * Class allow to calculate scores of Yatzy dice game
+ */
 public class Yatzy1 {
 
     public static int chance(int d1, int d2, int d3, int d4, int d5)
