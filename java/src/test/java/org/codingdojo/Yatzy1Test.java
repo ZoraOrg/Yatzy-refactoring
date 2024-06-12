@@ -1,6 +1,8 @@
 package org.codingdojo;
 
 import org.codingdojo.yatzy1.Yatzy1;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,12 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Yatzy1Test {
 
+    private static Yatzy1 yatzy1;
+
+    @BeforeAll
+    public static void init() {
+        yatzy1 = new Yatzy1();
+    }
+
     @Test
-    public void chance_scores_sum_of_all_dice() {
-        int expected = 15;
-        int actual = Yatzy1.calculateScoreOfChanceCategory(2,3,4,5,1);
-        assertEquals(expected, actual);
-        assertEquals(16, Yatzy1.calculateScoreOfChanceCategory(3,3,4,5,1));
+    @DisplayName("check if the player score the sum of all dices")
+    public void testChanceCategory() {
+        assertEquals(15, yatzy1.calculateScoreOfChanceCategory(2, 3, 4, 5, 1));
+        assertEquals(16, yatzy1.calculateScoreOfChanceCategory(3, 3, 4, 5, 1));
     }
 
     @Test public void yatzy_scores_50() {

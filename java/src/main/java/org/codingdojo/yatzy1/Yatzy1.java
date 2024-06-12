@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Yatzy1 {
 
     //The player scores the sum of all dice, no matter what they read
-    public static int  calculateScoreOfChanceCategory(int d1, int d2, int d3, int d4, int d5) {
+    public int calculateScoreOfChanceCategory(int d1, int d2, int d3, int d4, int d5) {
         IntStream stream = IntStream.of(d1, d2, d3, d4, d5);
         return stream.reduce(0, (a, b) -> a + b);
     }
