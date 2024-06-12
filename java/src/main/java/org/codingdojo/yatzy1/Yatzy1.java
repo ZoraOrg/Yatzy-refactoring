@@ -1,19 +1,16 @@
 package org.codingdojo.yatzy1;
 
+import java.util.stream.IntStream;
+
 /**
  * Class allow to calculate scores of Yatzy dice game
  */
 public class Yatzy1 {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5)
-    {
-        int total = 0;
-        total += d1;
-        total += d2;
-        total += d3;
-        total += d4;
-        total += d5;
-        return total;
+    //The player scores the sum of all dice, no matter what they read
+    public static int  calculateScoreOfChanceCategory(int d1, int d2, int d3, int d4, int d5) {
+        IntStream stream = IntStream.of(d1, d2, d3, d4, d5);
+        return stream.reduce(0, (a, b) -> a + b);
     }
 
     public static int yatzy(int... dice)

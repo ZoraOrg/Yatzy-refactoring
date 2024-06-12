@@ -12,9 +12,9 @@ public class Yatzy1Test {
     @Test
     public void chance_scores_sum_of_all_dice() {
         int expected = 15;
-        int actual = Yatzy1.chance(2,3,4,5,1);
+        int actual = Yatzy1.calculateScoreOfChanceCategory(2,3,4,5,1);
         assertEquals(expected, actual);
-        assertEquals(16, Yatzy1.chance(3,3,4,5,1));
+        assertEquals(16, Yatzy1.calculateScoreOfChanceCategory(3,3,4,5,1));
     }
 
     @Test public void yatzy_scores_50() {
