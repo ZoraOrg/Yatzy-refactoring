@@ -1,6 +1,7 @@
 package org.codingdojo.yatzy1;
 
 import org.codingdojo.YatzyCategory;
+import org.codingdojo.yatzy1.calculator.facade.CalculatorStraightFacade;
 import org.codingdojo.yatzy1.calculator.strategy.*;
 import org.codingdojo.yatzy1.calculator.template.*;
 
@@ -73,6 +74,18 @@ public class Yatzy1 {
         return scorePairValue(YatzyCategory.FOUR_OF_A_KIND, d1, d2, d3, d4, d5);
     }
 
+    //if the dice read 1,2,3,4,5, the player scores the sum of all the dice
+    public int calculateScoreOfSmallStraight(int d1, int d2, int d3, int d4, int d5) {
+        CalculatorStraightFacade calculatorStraightFacade = new CalculatorStraightFacade();
+        return calculatorStraightFacade.getScoreStraightValue(YatzyCategory.SMALL_STRAIGHT, d1, d2, d3, d4, d5);
+    }
+
+    //if the dice read 2,3,4,5,6, the player scores the sum of all the dice
+    public int calculateScoreOfLargeStraight(int d1, int d2, int d3, int d4, int d5) {
+        CalculatorStraightFacade calculatorStraightFacade = new CalculatorStraightFacade();
+        return calculatorStraightFacade.getScoreStraightValue(YatzyCategory.LARGE_STRAIGHT, d1, d2, d3, d4, d5);
+    }
+
     //The player scores the sum of the dice that reads one, two, three, four, five or six, respectively
     public static int calculateScoreOfSpecificValue(YatzyCategory category, List<Integer> dices) {
         CalculatorTemplate calculatorTemplate = null;
@@ -97,42 +110,6 @@ public class Yatzy1 {
             case FOUR_OF_A_KIND -> calculatorPair = new CalculatorPair(new CalculatorFourPairStrategy());
         }
         return calculatorPair.calculate(d1, d2, d3, d4, d5);
-    }
-
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5)
-    {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if (tallies[0] == 1 &&
-            tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1)
-            return 15;
-        return 0;
-    }
-
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5)
-    {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-        if (tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1
-            && tallies[5] == 1)
-            return 20;
-        return 0;
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5)

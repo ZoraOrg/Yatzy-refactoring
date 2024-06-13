@@ -110,17 +110,19 @@ public class Yatzy1Test {
     }
 
     @Test
+    @DisplayName("check if the player scores 15 when the dice read 1,2,3,4,5")
     public void smallStraight() {
-        assertEquals(15, Yatzy1.smallStraight(1,2,3,4,5));
-        assertEquals(15, Yatzy1.smallStraight(2,3,4,5,1));
-        assertEquals(0, Yatzy1.smallStraight(1,2,2,4,5));
+        assertEquals(15, yatzy1.calculateScoreOfSmallStraight(1, 2, 3, 4, 5));
+        assertEquals(15, yatzy1.calculateScoreOfSmallStraight(2, 3, 4, 5, 1));
+        assertEquals(0, yatzy1.calculateScoreOfSmallStraight(1, 2, 2, 4, 5));
     }
 
     @Test
-    public void largeStraight() {
-        assertEquals(20, Yatzy1.largeStraight(6,2,3,4,5));
-        assertEquals(20, Yatzy1.largeStraight(2,3,4,5,6));
-        assertEquals(0, Yatzy1.largeStraight(1,2,2,4,5));
+    @DisplayName("check if the player scores 20 when the dice read 2,3,4,5,6")
+    public void largeStraightCategory() {
+        assertEquals(20, yatzy1.calculateScoreOfLargeStraight(6, 2, 3, 4, 5));
+        assertEquals(20, yatzy1.calculateScoreOfLargeStraight(2, 3, 4, 5, 6));
+        assertEquals(0, yatzy1.calculateScoreOfLargeStraight(1, 2, 2, 4, 5));
     }
 
     @Test
