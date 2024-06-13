@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class Yatzy1Test {
@@ -33,45 +32,51 @@ public class Yatzy1Test {
         assertEquals(0, yatzy1.calculateScoreOfYatzyCategory(6, 6, 6, 6, 3));
     }
 
-    @Test public void test_1s() {
-        assertTrue(Yatzy1.ones(1,2,3,4,5) == 1);
-        assertEquals(2, Yatzy1.ones(1,2,1,4,5));
-        assertEquals(0, Yatzy1.ones(6,2,2,4,5));
-        assertEquals(4, Yatzy1.ones(1,2,1,1,1));
+    @Test
+    @DisplayName("check if the sum of the dice that reads one equals score")
+    public void testOnesCategory() {
+        assertEquals(1, yatzy1.calculateScoreOfOnesCategory(1, 2, 3, 4, 5));
+        assertEquals(2, yatzy1.calculateScoreOfOnesCategory(1, 2, 1, 4, 5));
+        assertEquals(0, yatzy1.calculateScoreOfOnesCategory(6, 2, 2, 4, 5));
+        assertEquals(4, yatzy1.calculateScoreOfOnesCategory(1, 2, 1, 1, 1));
     }
 
     @Test
-    public void test_2s() {
-        assertEquals(4, Yatzy1.twos(1,2,3,2,6));
-        assertEquals(10, Yatzy1.twos(2,2,2,2,2));
+    @DisplayName("check if the sum of the dice that reads two equals score")
+    public void testTwosCategory() {
+        assertEquals(4, yatzy1.calculateScoreOfOTwosCategory(1, 2, 3, 2, 6));
+        assertEquals(10, yatzy1.calculateScoreOfOTwosCategory(2, 2, 2, 2, 2));
     }
 
     @Test
-    public void test_threes() {
-        assertEquals(6, Yatzy1.threes(1,2,3,2,3));
-        assertEquals(12, Yatzy1.threes(2,3,3,3,3));
+    @DisplayName("check if the sum of the dice that reads three equals score")
+    public void testThreesCategory() {
+        assertEquals(6, yatzy1.calculateScoreOfThreesCategory(1, 2, 3, 2, 3));
+        assertEquals(12, yatzy1.calculateScoreOfThreesCategory(2, 3, 3, 3, 3));
     }
 
     @Test
-    public void fours_test() 
-    {
-        assertEquals(12, new Yatzy1(4,4,4,5,5).fours());
-        assertEquals(8, new Yatzy1(4,4,5,5,5).fours());
-        assertEquals(4, new Yatzy1(4,5,5,5,5).fours());
+    @DisplayName("check if the sum of the dice that reads four equals score")
+    public void testFoursCategory() {
+        assertEquals(12, yatzy1.calculateScoreOfFoursCategory(4, 4, 4, 5, 5));
+        assertEquals(8, yatzy1.calculateScoreOfFoursCategory(4, 4, 5, 5, 5));
+        assertEquals(4, yatzy1.calculateScoreOfFoursCategory(4, 5, 5, 5, 5));
     }
 
     @Test
-    public void fives() {
-        assertEquals(10, new Yatzy1(4,4,4,5,5).fives());
-        assertEquals(15, new Yatzy1(4,4,5,5,5).fives());
-        assertEquals(20, new Yatzy1(4,5,5,5,5).fives());
+    @DisplayName("check if the sum of the dice that reads five equals score")
+    public void testFivesCategory() {
+        assertEquals(10, yatzy1.calculateScoreOfFivesCategory(4, 4, 4, 5, 5));
+        assertEquals(15, yatzy1.calculateScoreOfFivesCategory(4, 4, 5, 5, 5));
+        assertEquals(20, yatzy1.calculateScoreOfFivesCategory(4, 5, 5, 5, 5));
     }
 
     @Test
-    public void sixes_test() {
-        assertEquals(0, new Yatzy1(4,4,4,5,5).sixes());
-        assertEquals(6, new Yatzy1(4,4,6,5,5).sixes());
-        assertEquals(18, new Yatzy1(6,5,6,6,5).sixes());
+    @DisplayName("check if the sum of the dice that reads six equals score")
+    public void testSixesCategory() {
+        assertEquals(0, yatzy1.calculateScoreOfSixesCategory(4, 4, 4, 5, 5));
+        assertEquals(6, yatzy1.calculateScoreOfSixesCategory(4, 4, 6, 5, 5));
+        assertEquals(18, yatzy1.calculateScoreOfSixesCategory(6, 5, 6, 6, 5));
     }
 
     @Test

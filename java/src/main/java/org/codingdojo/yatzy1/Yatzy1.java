@@ -1,5 +1,9 @@
 package org.codingdojo.yatzy1;
 
+import org.codingdojo.YatzyCategory;
+import org.codingdojo.yatzy1.calculator.template.*;
+
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -21,81 +25,48 @@ public class Yatzy1 {
         else return 0;
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1) 
-            sum++;
-
-        return sum;
+    //The player scores the sum of the dice that reads one
+    public int calculateScoreOfOnesCategory(int d1, int d2, int d3, int d4, int d5) {
+        return calculateScoreOfSpecificValue(YatzyCategory.ONES, List.of(d1, d2, d3, d4, d5));
     }
 
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2) sum += 2;
-        if (d2 == 2) sum += 2;
-        if (d3 == 2) sum += 2;
-        if (d4 == 2) sum += 2;
-        if (d5 == 2) sum += 2;
-        return sum;
+    //The player scores the sum of the dice that reads two
+    public int calculateScoreOfOTwosCategory(int d1, int d2, int d3, int d4, int d5) {
+        return calculateScoreOfSpecificValue(YatzyCategory.TWOS, List.of(d1, d2, d3, d4, d5));
     }
 
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;    
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
+    //The player scores the sum of the dice that reads three
+    public int calculateScoreOfThreesCategory(int d1, int d2, int d3, int d4, int d5) {
+        return calculateScoreOfSpecificValue(YatzyCategory.THREES, List.of(d1, d2, d3, d4, d5));
     }
 
-    protected int[] dice;
-    public Yatzy1() {}
-    public Yatzy1(int d1, int d2, int d3, int d4, int _5)
-    {
-        this();
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
+    //The player scores the sum of the dice that reads four
+    public int calculateScoreOfFoursCategory(int d1, int d2, int d3, int d4, int d5) {
+        return calculateScoreOfSpecificValue(YatzyCategory.FOURS, List.of(d1, d2, d3, d4, d5));
     }
 
-    public int fours()
-    {
-        int sum;    
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
+    //The player scores the sum of the dice that reads five
+    public int calculateScoreOfFivesCategory(int d1, int d2, int d3, int d4, int d5) {
+        return calculateScoreOfSpecificValue(YatzyCategory.FIVES, List.of(d1, d2, d3, d4, d5));
+    }
+
+    //The player scores the sum of the dice that reads six
+    public int calculateScoreOfSixesCategory(int d1, int d2, int d3, int d4, int d5) {
+        return calculateScoreOfSpecificValue(YatzyCategory.SIXES, List.of(d1, d2, d3, d4, d5));
+    }
+
+    //The player scores the sum of the dice that reads one, two, three, four, five or six, respectively
+    public static int calculateScoreOfSpecificValue(YatzyCategory category, List<Integer> dices) {
+        CalculatorTemplate calculatorTemplate = null;
+        switch (category) {                          // (1)
+            case ONES -> calculatorTemplate = new CalculatorOfOnesTemplate();
+            case TWOS -> calculatorTemplate = new CalculatorOfTwosTemplate();
+            case THREES -> calculatorTemplate = new CalculatorOfThreesTemplate();
+            case FOURS -> calculatorTemplate = new CalculatorOfFoursTemplate();
+            case FIVES -> calculatorTemplate = new CalculatorOfFivesTemplate();
+            case SIXES -> calculatorTemplate = new CalculatorOfSixesTemplate();
         }
-        return sum;
-    }
-
-    public int fives()
-    {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++) 
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
-    }
-
-    public int sixes()
-    {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++) 
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+        return calculatorTemplate.calculateTotal(dices);
     }
 
     public int score_pair(int d1, int d2, int d3, int d4, int d5)
