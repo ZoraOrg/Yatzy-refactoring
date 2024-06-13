@@ -15,15 +15,12 @@ public class Yatzy1 {
 
     //The player scores the sum of all dice, no matter what they read
     public int calculateScoreOfChanceCategory(int d1, int d2, int d3, int d4, int d5) {
-        IntStream stream = IntStream.of(d1, d2, d3, d4, d5);
-        return stream.reduce(0, (a, b) -> a + b);
+        return IntStream.of(d1, d2, d3, d4, d5).reduce(0, Integer::sum);
     }
 
     //If all dice have the same number, the player scores 50 points
     public int calculateScoreOfYatzyCategory(int d1, int d2, int d3, int d4, int d5) {
-        Long count = Stream.of(d1, d2, d3, d4, d5).distinct().count();
-        if (count == 1) return 50;
-        else return 0;
+        return Stream.of(d1, d2, d3, d4, d5).distinct().count() == 1 ? 50 : 0;
     }
 
     //The player scores the sum of the dice that reads one
