@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class Yatzy1Test {
-
     private static Yatzy1 yatzy1;
 
     @BeforeAll
@@ -80,31 +79,34 @@ public class Yatzy1Test {
     }
 
     @Test
-    public void one_pair() {
-        assertEquals(6, new Yatzy1().score_pair(3,4,3,5,6));
-        assertEquals(10, new Yatzy1().score_pair(5,3,3,3,5));
-        assertEquals(12, new Yatzy1().score_pair(5,3,6,6,5));
+    @DisplayName("check if the sum of the two highest matching dice equals score")
+    public void testOnePairCategory() {
+        assertEquals(6, yatzy1.calculateScoreOfPairCategory(3, 4, 3, 5, 6));
+        assertEquals(10, yatzy1.calculateScoreOfPairCategory(5, 3, 3, 3, 5));
+        assertEquals(12, yatzy1.calculateScoreOfPairCategory(5, 3, 6, 6, 5));
     }
 
     @Test
-    public void two_Pair() {
-        assertEquals(16, Yatzy1.two_pair(3,3,5,4,5));
-        assertEquals(16, Yatzy1.two_pair(3,3,5,5,5));
+    @DisplayName("check if the score equals the sum of dices when there is two frequency of dice")
+    public void testTwoPairCategory() {
+        assertEquals(16, yatzy1.calculateScoreOfTwoPairCategory(3, 3, 5, 4, 5));
+        assertEquals(16, yatzy1.calculateScoreOfTwoPairCategory(3, 3, 5, 5, 5));
     }
 
     @Test
-    public void three_of_a_kind() 
-    {
-        assertEquals(9, Yatzy1.three_of_a_kind(3,3,3,4,5));
-        assertEquals(15, Yatzy1.three_of_a_kind(5,3,5,4,5));
-        assertEquals(9, Yatzy1.three_of_a_kind(3,3,3,3,5));
+    @DisplayName("check if the score equals the sum of dices when there is three frequency of dice")
+    public void threeOfAKindCategory() {
+        assertEquals(9, yatzy1.calculateScoreOfThreeOfAKindCategory(3, 3, 3, 4, 5));
+        assertEquals(15, yatzy1.calculateScoreOfThreeOfAKindCategory(5, 3, 5, 4, 5));
+        assertEquals(9, yatzy1.calculateScoreOfThreeOfAKindCategory(3, 3, 3, 3, 5));
+        assertEquals(9, yatzy1.calculateScoreOfThreeOfAKindCategory(3, 3, 3, 3, 3));
     }
 
     @Test
-    public void four_of_a_knd() {
-        assertEquals(12, Yatzy1.four_of_a_kind(3,3,3,3,5));
-        assertEquals(20, Yatzy1.four_of_a_kind(5,5,5,4,5));
-        assertEquals(9, Yatzy1.three_of_a_kind(3,3,3,3,3));
+    @DisplayName("check if the score equals the sum of dices when there is four frequency of dice")
+    public void fourOfAKindCategory() {
+        assertEquals(12, yatzy1.calculateScoreOfFourOfAKindCategory(3, 3, 3, 3, 5));
+        assertEquals(20, yatzy1.calculateScoreOfFourOfAKindCategory(5, 5, 5, 4, 5));
     }
 
     @Test
