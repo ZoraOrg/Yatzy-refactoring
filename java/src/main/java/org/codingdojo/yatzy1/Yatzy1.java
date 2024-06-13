@@ -101,7 +101,7 @@ public class Yatzy1 {
 
     //The player scores the sum of the dice that reads one, two, three, four, five or six, respectively
     public static int calculateScoreOfSpecificValue(YatzyCategory category, List<Integer> dices) {
-        CalculatorTemplate calculatorTemplate = null;
+        CalculatorTemplate calculatorTemplate;
         switch (category) {
             case ONES -> calculatorTemplate = new CalculatorOfOnesTemplate();
             case TWOS -> calculatorTemplate = new CalculatorOfTwosTemplate();
@@ -109,20 +109,22 @@ public class Yatzy1 {
             case FOURS -> calculatorTemplate = new CalculatorOfFoursTemplate();
             case FIVES -> calculatorTemplate = new CalculatorOfFivesTemplate();
             case SIXES -> calculatorTemplate = new CalculatorOfSixesTemplate();
+            default -> throw new IllegalArgumentException("Unexpected value: " + category);
         }
-        return calculatorTemplate != null ? calculatorTemplate.calculateTotal(dices) : 0;
+        return calculatorTemplate.calculateTotal(dices);
     }
 
     //If there are a number pairs of dice with the same number, the player scores the sum of these dice
     public static int scorePairValue(YatzyCategory category, int d1, int d2, int d3, int d4, int d5) {
-        CalculatorPair calculatorPair = null;
+        CalculatorPair calculatorPair;
         switch (category) {
             case PAIR -> calculatorPair = new CalculatorPair(new CalculatorOnePairStrategy());
             case TWO_PAIRS -> calculatorPair = new CalculatorPair(new CalculatorTwoPairStrategy());
             case THREE_OF_A_KIND -> calculatorPair = new CalculatorPair(new CalculatorThreePairStrategy());
             case FOUR_OF_A_KIND -> calculatorPair = new CalculatorPair(new CalculatorFourPairStrategy());
+            default -> throw new IllegalArgumentException("Unexpected value: " + category);
         }
-        return calculatorPair != null ? calculatorPair.calculate(d1, d2, d3, d4, d5) : 0;
+        return calculatorPair.calculate(d1, d2, d3, d4, d5);
     }
 }
 
