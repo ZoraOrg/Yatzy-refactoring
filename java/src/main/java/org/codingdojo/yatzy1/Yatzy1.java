@@ -110,7 +110,7 @@ public class Yatzy1 {
             case FIVES -> calculatorTemplate = new CalculatorOfFivesTemplate();
             case SIXES -> calculatorTemplate = new CalculatorOfSixesTemplate();
         }
-        return calculatorTemplate.calculateTotal(dices);
+        return calculatorTemplate != null ? calculatorTemplate.calculateTotal(dices) : 0;
     }
 
     //If there are a number pairs of dice with the same number, the player scores the sum of these dice
@@ -122,7 +122,7 @@ public class Yatzy1 {
             case THREE_OF_A_KIND -> calculatorPair = new CalculatorPair(new CalculatorThreePairStrategy());
             case FOUR_OF_A_KIND -> calculatorPair = new CalculatorPair(new CalculatorFourPairStrategy());
         }
-        return calculatorPair.calculate(d1, d2, d3, d4, d5);
+        return calculatorPair != null ? calculatorPair.calculate(d1, d2, d3, d4, d5) : 0;
     }
 }
 

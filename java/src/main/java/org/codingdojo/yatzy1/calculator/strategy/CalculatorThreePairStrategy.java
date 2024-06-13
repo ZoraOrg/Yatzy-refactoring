@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CalculatorThreePairStrategy implements CalculatorPairStrategy {
+
     @Override
     public int calculateScoreForPairOfDice(int d1, int d2, int d3, int d4, int d5) {
         Map<Integer, Long> pairs = Stream.of(d1, d2, d3, d4, d5).sorted(Comparator.reverseOrder())

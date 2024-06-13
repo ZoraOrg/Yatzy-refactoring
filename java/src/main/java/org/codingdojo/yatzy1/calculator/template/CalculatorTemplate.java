@@ -2,7 +2,9 @@ package org.codingdojo.yatzy1.calculator.template;
 
 import java.util.List;
 
-// calculator of Ones, Twos, Threes, Fours, Fives, Sixes using template design pattern
+/**
+ * Calculator of Ones, Twos, Threes, Fours, Fives, Sixes using template design pattern
+ */
 public abstract class CalculatorTemplate {
     public final int calculateTotal(List<Integer> dices) {
         return dices.stream()

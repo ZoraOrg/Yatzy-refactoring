@@ -2,9 +2,12 @@ package org.codingdojo.yatzy1.calculator.facade;
 
 import org.codingdojo.YatzyCategory;
 
+/**
+ * Calculator of small and large straight using design pattern Strategy
+ */
 public class CalculatorStraightFacade {
-    private CalculatorSmallStraight calculatorSmallStraight;
-    private CalculatorLargeStraight calculatorLargeStraight;
+    private final CalculatorSmallStraight calculatorSmallStraight;
+    private final CalculatorLargeStraight calculatorLargeStraight;
 
     public CalculatorStraightFacade() {
         this.calculatorSmallStraight = new CalculatorSmallStraight();
