@@ -6,6 +6,9 @@ import org.codingdojo.yatzy1.calculator.strategy.*;
 import org.codingdojo.yatzy1.calculator.template.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -86,6 +89,16 @@ public class Yatzy1 {
         return calculatorStraightFacade.getScoreStraightValue(YatzyCategory.LARGE_STRAIGHT, d1, d2, d3, d4, d5);
     }
 
+    //If the dices are two of a kind and three of a kind, the player scores the sum of all the dice.
+    public int calculateScoreOfFullHouse(int d1, int d2, int d3, int d4, int d5) {
+        Map<Integer, Long> pairs = Stream.of(d1, d2, d3, d4, d5)
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        if (pairs.size() > 2)
+            return 0;
+        boolean isTwoKind = pairs.entrySet().stream().allMatch(a -> a.getValue() == 2 || a.getValue() == 3);
+        return isTwoKind ? pairs.entrySet().stream().mapToInt(d -> (int) (d.getValue() * d.getKey())).sum() : 0;
+    }
+
     //The player scores the sum of the dice that reads one, two, three, four, five or six, respectively
     public static int calculateScoreOfSpecificValue(YatzyCategory category, List<Integer> dices) {
         CalculatorTemplate calculatorTemplate = null;
@@ -110,43 +123,6 @@ public class Yatzy1 {
             case FOUR_OF_A_KIND -> calculatorPair = new CalculatorPair(new CalculatorFourPairStrategy());
         }
         return calculatorPair.calculate(d1, d2, d3, d4, d5);
-    }
-
-    public static int fullHouse(int d1, int d2, int d3, int d4, int d5)
-    {
-        int[] tallies;
-        boolean _2 = false;
-        int i;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
-
-
-
-
-        tallies = new int[6];
-        tallies[d1-1] += 1;
-        tallies[d2-1] += 1;
-        tallies[d3-1] += 1;
-        tallies[d4-1] += 1;
-        tallies[d5-1] += 1;
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 2) {
-                _2 = true;
-                _2_at = i+1;
-            }
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 3) {
-                _3 = true;
-                _3_at = i+1;
-            }
-
-        if (_2 && _3)
-            return _2_at * 2 + _3_at * 3;
-        else
-            return 0;
     }
 }
 

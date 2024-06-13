@@ -126,8 +126,9 @@ public class Yatzy1Test {
     }
 
     @Test
-    public void fullHouse() {
-        assertEquals(18, Yatzy1.fullHouse(6,2,2,2,6));
-        assertEquals(0, Yatzy1.fullHouse(2,3,4,5,6));
+    @DisplayName("check if we sum all the dice when they are two of a kind and three of a kind")
+    public void testScoreOfFullHouse() {
+        assertEquals(18, yatzy1.calculateScoreOfFullHouse(6, 2, 2, 2, 6));
+        assertEquals(0, yatzy1.calculateScoreOfFullHouse(2, 3, 4, 5, 6));
     }
 }
